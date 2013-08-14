@@ -163,27 +163,6 @@ namespace GoodRPG
                             Console.WriteLine("x=" + x + " y=" + y + " is " + textureIndex);
                             break;
                     }
-
-
-                    /*
-                    if (textureIndex == 1)
-                    {
-
-                        Tile tile;
-                        Vector2 pos = new Vector2(48 * x, 48 * y);
-
-                        tile = new Tile(wood, 48, 48, pos, true);
-
-                        tileList.Add(tile);
-
-                        Console.WriteLine("x=" + x + " y=" + y + " is " + textureIndex);
-                    }
-                    else
-                    {
-                        Console.WriteLine("x=" + x + " y=" + y + " is " + textureIndex);
-                    }*/
-
-
                 }
             }
 
