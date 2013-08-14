@@ -46,11 +46,7 @@ namespace Shooter
             prevKeyboard = keyboard;
             keyboard = Keyboard.GetState();
 
-            
-            //Code handling player 1
-            if (playerNumber == 1)
-            {
-                 
+
                 if (keyboard.IsKeyDown(Keys.W) == true)
                 {
                     
