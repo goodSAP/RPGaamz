@@ -245,6 +245,11 @@ namespace GoodRPG
                 graphics.ApplyChanges();
             }
 
+            if (keyBoard.IsKeyDown(Keys.Escape))
+            {
+                this.Exit();
+            }
+
 
             
 
