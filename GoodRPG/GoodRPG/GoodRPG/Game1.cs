@@ -88,7 +88,7 @@ namespace GoodRPG
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             crate = Content.Load<Texture2D>("Art/Tiles/Crate");
-            player = new Player();
+            
             wood = Content.Load<Texture2D>("Art/Tiles/floor board");
 
            
@@ -117,8 +117,8 @@ namespace GoodRPG
             animation.Initialize(sprite, new Vector2(0, 0), 32, 48, 4, 150, Color.White, 1f, true);
 
 
-            player.Initialize(animation, new Vector2(550, 500));
-            player.PlayerAnimation.draw = true;
+            
+            player = new Player(sprite,1,32,48,new Rectangle(0,0,1280,720));
             KeyboardState prevKey = Keyboard.GetState();
             prevGamePad = GamePad.GetState(PlayerIndex.One);
 

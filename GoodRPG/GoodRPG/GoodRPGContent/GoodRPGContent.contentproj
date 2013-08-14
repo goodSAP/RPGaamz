@@ -56,7 +56,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Art\jasperrun.png">
+    <Compile Include="Art\jasperrun %281%29.png">
       <Name>jasperrun</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

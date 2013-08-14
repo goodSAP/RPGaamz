@@ -40,40 +40,174 @@ namespace Shooter
     
         }
 
+        Rectangle sourceRect;
+        int currentFrame = 0;
+
+        int spriteWidth = 32;
+        int spriteHeight = 32;
+        int spriteSpeed = 2;
+
+        float timer = 0f;
+        float interval = 200f;
+        Texture2D texture;
 
         KeyboardState keyboard;
         KeyboardState prevKeyboard;
 
+
+        public Player(Texture2D texture, int currentFrame, int spriteWidth, int spriteHeight, Rectangle screenBounds)
+        {
+            this.texture = texture;
+            this.currentFrame = currentFrame;
+            this.spriteWidth = spriteWidth;
+            this.spriteHeight = spriteHeight;
+
+        }
 
         public void handleSpriteMovement(GameTime gameTime)
         {
             prevKeyboard = keyboard;
             keyboard = Keyboard.GetState();
 
+            sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
+            if (keyboard.GetPressedKeys().Length == 0)
+            {
 
-                if (keyboard.IsKeyDown(Keys.W) == true)
+                if (currentFrame > 0 && currentFrame < 4)
                 {
-                    Position.Y -= 2;
+                    currentFrame = 0;
                 }
-
-
-                if (keyboard.IsKeyDown(Keys.A) == true)
+                if (currentFrame > 4 && currentFrame < 8)
                 {
-                    Position.X -= 2;
-
+                    currentFrame = 4;
                 }
-
-                if (keyboard.IsKeyDown(Keys.S) == true)
+                if (currentFrame > 8 && currentFrame < 12)
                 {
-                    Position.Y += 2;
+                    currentFrame = 8;
                 }
-
-                if (keyboard.IsKeyDown(Keys.D) == true)
+                if (currentFrame > 12 && currentFrame < 16)
                 {
-                    Position.X += 2;
+                    currentFrame = 12;
                 }
-
             }
+
+            if (keyboard.IsKeyDown(Keys.Right) == true)
+            {
+                AnimateRight(gameTime);
+                if (Position.X < 780)
+                    Position.X += spriteSpeed;
+            }
+
+
+            if (keyboard.IsKeyDown(Keys.Left) == true)
+            {
+                AnimateLeft(gameTime);
+                if (Position.X > 20)
+                    Position.X -= spriteSpeed;
+            }
+
+            if (keyboard.IsKeyDown(Keys.Down) == true)
+            {
+                AnimateDown(gameTime);
+                if (Position.Y < 575)
+                    Position.Y += spriteSpeed;
+            }
+
+            if (keyboard.IsKeyDown(Keys.Up) == true)
+            {
+                AnimateUp(gameTime);
+                if (Position.Y > 25)
+                    Position.Y -= spriteSpeed;
+            }
+
+          
+
+
+       //     velocity = new Vector2(sourceRect.Width / 2, sourceRect.Height / 2);
+        }
+
+
+        public void AnimateRight(GameTime gametime)
+        {
+
+            if (keyboard != prevKeyboard)
+                currentFrame = 9;
+
+            timer += (float)gametime.ElapsedGameTime.TotalMilliseconds;
+
+            if (timer > interval)
+            {
+                currentFrame++;
+
+                if (currentFrame > 11)
+                    currentFrame = 8;
+
+                timer = 0f;
+            }
+        }
+
+
+
+
+
+        public void AnimateLeft(GameTime gametime)
+        {
+
+            if (keyboard != prevKeyboard)
+                currentFrame = 5;
+
+            timer += (float)gametime.ElapsedGameTime.TotalMilliseconds;
+
+            if (timer > interval)
+            {
+                currentFrame++;
+
+                if (currentFrame > 7)
+                    currentFrame = 4;
+
+                timer = 0f;
+            }
+        }
+
+
+        public void AnimateUp(GameTime gametime)
+        {
+
+            if (keyboard != prevKeyboard)
+                currentFrame = 13;
+
+            timer += (float)gametime.ElapsedGameTime.TotalMilliseconds;
+
+            if (timer > interval)
+            {
+                currentFrame++;
+
+                if (currentFrame > 15)
+                    currentFrame = 12;
+
+                timer = 0f;
+            }
+        }
+
+
+        public void AnimateDown(GameTime gametime)
+        {
+
+            if (keyboard != prevKeyboard)
+                currentFrame = 1;
+
+            timer += (float)gametime.ElapsedGameTime.TotalMilliseconds;
+
+            if (timer > interval)
+            {
+                currentFrame++;
+
+                if (currentFrame > 3)
+                    currentFrame = 0;
+
+                timer = 0f;
+            }
+        }
 
 
         public string Facing;
@@ -81,37 +215,23 @@ namespace Shooter
         
 
         // Initialize the player
-        public void Initialize(Animation animation, Vector2 position)
-        {
-            PlayerAnimation = animation;
-
-
-            // Set the starting position of the player around the middle of the screen and to the back
-            Position = position;
-
-
-            // Set the player to be active
-            Active = true;
-
-
-            // Set the player health
-            Health = 100;
-        }
+      
 
 
         // Update the player animation
         public void Update(GameTime gameTime)
         {
-            PlayerAnimation.Position = Position;
-            PlayerAnimation.Update(gameTime);
+          
 
-            hitbox  = new Rectangle((int)Position.X, (int)Position.Y, PlayerAnimation.FrameWidth,PlayerAnimation.FrameHeight);
+            hitbox  = new Rectangle((int)Position.X, (int)Position.Y, spriteWidth,spriteHeight);
         }
 
         // Draw the player
         public void Draw(SpriteBatch spriteBatch, float rotation)
         {
-            PlayerAnimation.Draw(spriteBatch, rotation, Facing);
+       //     PlayerAnimation.Draw(spriteBatch, rotation, Facing);
+            spriteBatch.Draw(texture, Position, sourceRect, Color.White);
+            
         }
 
     }
