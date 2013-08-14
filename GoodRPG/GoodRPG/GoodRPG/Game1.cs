@@ -202,14 +202,14 @@ namespace GoodRPG
                 this.Exit();
             }
 
-            
+            player.handleSpriteMovement(gameTime);
             player.Update(gameTime);
             
             foreach (Tile tile in tileList)
             {
-                if (tile.BoundingBox.Contains(player.hitbox))
+                if (tile.BoundingBox.Intersects(player.hitbox))
                 {
-                    
+                    player.Position.X -= 2;
                 }
             }
 

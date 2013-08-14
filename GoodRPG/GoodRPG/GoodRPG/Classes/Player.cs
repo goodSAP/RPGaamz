@@ -53,23 +53,24 @@ namespace Shooter
 
                 if (keyboard.IsKeyDown(Keys.W) == true)
                 {
-                    
+                    Position.Y -= 2;
                 }
 
 
                 if (keyboard.IsKeyDown(Keys.A) == true)
                 {
-                    
+                    Position.X -= 2;
+
                 }
 
                 if (keyboard.IsKeyDown(Keys.S) == true)
                 {
-                    
+                    Position.Y += 2;
                 }
 
                 if (keyboard.IsKeyDown(Keys.D) == true)
                 {
-                    
+                    Position.X += 2;
                 }
 
             }
