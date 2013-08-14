@@ -51,6 +51,8 @@ namespace Shooter
         float interval = 200f;
         Texture2D texture;
 
+        public int playerDirection;
+
         KeyboardState keyboard;
         KeyboardState prevKeyboard;
 
@@ -94,30 +96,34 @@ namespace Shooter
             if (keyboard.IsKeyDown(Keys.W) == true)
             {
                 AnimateUp(gameTime);
-                if (Position.Y > 25)
+                playerDirection = 1;
+                if (Position.Y > 0)
                     Position.Y -= spriteSpeed;
             }
 
             if (keyboard.IsKeyDown(Keys.A) == true)
             {
+                playerDirection = 2;
                 AnimateLeft(gameTime);
-                if (Position.X > 20)
+                if (Position.X > 0)
                     Position.X -= spriteSpeed;
             }
 
 
             if (keyboard.IsKeyDown(Keys.S) == true)
             {
+                playerDirection = 3;
                 AnimateDown(gameTime);
-                if (Position.Y < 575)
+                if (Position.Y < 672)
                     Position.Y += spriteSpeed;
             }
 
 
             if (keyboard.IsKeyDown(Keys.D) == true)
             {
+                playerDirection = 4;
                 AnimateRight(gameTime);
-                if (Position.X < 780)
+                if (Position.X < 1248)
                     Position.X += spriteSpeed;
             }
 
