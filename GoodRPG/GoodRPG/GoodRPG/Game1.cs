@@ -88,11 +88,11 @@ namespace GoodRPG
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            crate = Content.Load<Texture2D>("art/crate");
+            crate = Content.Load<Texture2D>("Art/Crate");
             player = new Player();
-            wood = Content.Load<Texture2D>("art/floor");
+            wood = Content.Load<Texture2D>("Art/floor board");
 
-            ninjaTexture = Content.Load<Texture2D>("art/Ninja");
+           
 
             //speederSprite = Content.Load<Texture2D>("Speeder");
 
@@ -114,7 +114,7 @@ namespace GoodRPG
             graphics.ApplyChanges();
 
 
-            sprite = Content.Load<Texture2D>("art/jasperrunCopy");
+            sprite = Content.Load<Texture2D>("Art/jasperrunCopy");
             animation.Initialize(sprite, new Vector2(0, 0), 48, 84, 4, 150, Color.White, 1f, true);
 
 
