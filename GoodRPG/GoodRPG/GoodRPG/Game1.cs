@@ -99,7 +99,7 @@ namespace GoodRPG
 
             gamepad = GamePad.GetState(PlayerIndex.One);
 
-            Createflor();
+            Createflor(map);
 
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
@@ -126,11 +126,11 @@ namespace GoodRPG
         }
 
 
-        private void Createflor()
+        private void Createflor(int[,] input)
         {
 
-            int tileMapWidth = map.GetLength(1);
-            int tileMapHeight = map.GetLength(0);
+            int tileMapWidth = input.GetLength(1);
+            int tileMapHeight = input.GetLength(0);
 
             for (int y = 0; y < tileMapHeight; y++)
             {
