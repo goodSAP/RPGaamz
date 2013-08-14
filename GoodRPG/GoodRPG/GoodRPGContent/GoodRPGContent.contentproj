@@ -42,22 +42,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Art\Crate.png">
+    <Compile Include="Art\Tiles\Crate.png">
       <Name>Crate</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Art\floor board.png">
+    <Compile Include="Art\Tiles\floor board.png">
       <Name>floor board</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Art\jasperrun.png">
-      <Name>jasperrun</Name>
+    <Compile Include="Art\jasperrunCopy.png">
+      <Name>jasperrunCopy</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
