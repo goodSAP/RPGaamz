@@ -37,6 +37,43 @@ namespace Shooter
         }
 
 
+        KeyboardState keyboard;
+        KeyboardState prevKeyboard;
+
+
+        public void handleSpriteMovement(GameTime gameTime)
+        {
+            prevKeyboard = keyboard;
+            keyboard = Keyboard.GetState();
+
+            
+            //Code handling player 1
+            if (playerNumber == 1)
+            {
+                 
+                if (keyboard.IsKeyDown(Keys.W) == true)
+                {
+                    
+                }
+
+
+                if (keyboard.IsKeyDown(Keys.A) == true)
+                {
+                    
+                }
+
+                if (keyboard.IsKeyDown(Keys.S) == true)
+                {
+                    
+                }
+
+                if (keyboard.IsKeyDown(Keys.D) == true)
+                {
+                    
+                }
+
+            }
+
 
         public string Facing;
 
