@@ -209,7 +209,8 @@ namespace GoodRPG
             {
                 if (tile.BoundingBox.Intersects(player.hitbox))
                 {
-                    player.Position.X -= 2;
+                    player.Position.X = 500;
+                    player.Position.Y = 500;
                 }
             }
 
