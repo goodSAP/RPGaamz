@@ -54,8 +54,10 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Art\jasperrunCopy.png">
-      <Name>jasperrunCopy</Name>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Art\jasperrun.png">
+      <Name>jasperrun</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

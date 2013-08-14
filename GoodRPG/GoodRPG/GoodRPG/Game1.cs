@@ -112,8 +112,8 @@ namespace GoodRPG
             graphics.ApplyChanges();
 
 
-            sprite = Content.Load<Texture2D>("Art/jasperrunCopy");
-            animation.Initialize(sprite, new Vector2(0, 0), 48, 84, 4, 150, Color.White, 1f, true);
+            sprite = Content.Load<Texture2D>("Art/jasperrun");
+            animation.Initialize(sprite, new Vector2(0, 0), 32, 48, 4, 150, Color.White, 1f, true);
 
 
             player.Initialize(animation, new Vector2(550, 500));
@@ -220,7 +220,7 @@ namespace GoodRPG
                 this.Exit();
             }
 
-
+            player.Update(gameTime);
             
 
             // TODO: Add your update logic here
@@ -243,12 +243,14 @@ namespace GoodRPG
                         null,
                         null,
                         cam.get_transformation(GraphicsDevice /*Send the variable that has your graphic device here*/));
-
+            
             foreach (Tile tile in tileList)
             {
                 tile.Draw(spriteBatch);
 
             }
+
+            player.Draw(spriteBatch,0f);
 
             spriteBatch.End();
 
