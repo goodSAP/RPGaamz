@@ -153,38 +153,7 @@ namespace GoodRPG
 
                             break;
 
-                        case 2:
-
-
-
-                            tile = new Tile(Content.Load<Texture2D>("art/fShelf/shelfLeft"), 48, 48, new Vector2(48 * x, 48 * y), true);
-
-                            tileList.Add(tile);
-
-                            Console.WriteLine("x=" + x + " y=" + y + " is " + textureIndex);
-                            break;
-
-                        case 3:
-
-
-
-                            tile = new Tile(Content.Load<Texture2D>("art/fShelf/shelfMid"), 48, 48, new Vector2(48 * x, 48 * y), true);
-
-                            tileList.Add(tile);
-
-                            Console.WriteLine("x=" + x + " y=" + y + " is " + textureIndex);
-                            break;
-
-                        case 4:
-
-
-
-                            tile = new Tile(Content.Load<Texture2D>("art/fShelf/shelfRight"), 48, 48, new Vector2(48 * x, 48 * y), true);
-
-                            tileList.Add(tile);
-
-                            Console.WriteLine("x=" + x + " y=" + y + " is " + textureIndex);
-                            break;
+                       
 
                         default:
                             Console.WriteLine("x=" + x + " y=" + y + " is " + textureIndex);
