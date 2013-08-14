@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using tile_r;
+using Microsoft.Xna.Framework.Input;
 
 
 namespace Shooter
