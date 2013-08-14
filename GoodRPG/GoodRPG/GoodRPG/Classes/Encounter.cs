@@ -7,5 +7,12 @@ namespace GoodRPG.Classes
 {
     class Encounter
     {
+
+
+
+
+
+
+
     }
 }

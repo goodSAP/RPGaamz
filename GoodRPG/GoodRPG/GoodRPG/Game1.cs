@@ -86,9 +86,9 @@ namespace GoodRPG
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            crate = Content.Load<Texture2D>("Art/Crate");
+            crate = Content.Load<Texture2D>("Art/Tiles/Crate");
             player = new Player();
-            wood = Content.Load<Texture2D>("Art/floor board");
+            wood = Content.Load<Texture2D>("Art/Tiles/floor board");
 
            
 
