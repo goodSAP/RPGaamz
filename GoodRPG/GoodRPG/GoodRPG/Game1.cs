@@ -43,16 +43,16 @@ namespace GoodRPG
 
         int[,] map = new int[,]
             {                                                                                                                                                                                                /*introduce enemies here*/                                   
-                 {0,0,0,0,0,0,0,0,0,0,},
-                 {0,0,0,0,0,0,0,0,0,0,},
-                 {0,0,0,0,0,0,0,0,0,0,},
-                 {0,0,0,0,0,0,0,0,0,0,},
-                 {0,0,0,0,0,0,0,0,0,0,},
-                 {0,0,0,0,0,0,0,0,0,0,},
-                 {0,0,0,0,0,0,0,0,0,0,},
-                 {0,0,0,0,0,0,0,0,0,0,},
-                 {0,0,0,0,0,0,0,0,0,0,},
-                 {0,0,0,0,0,0,0,0,0,0,},
+                 {1,1,1,1,1,1,1,1,1,1,},
+                 {1,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,0,0,0,1,},
+                 {1,1,1,1,1,1,1,1,1,1,},
             };
 
 
@@ -235,8 +235,18 @@ namespace GoodRPG
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
+            GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
+
+            KeyboardState keyBoard = Keyboard.GetState();
+
+            if (keyBoard.IsKeyDown(Keys.F))
+            {
+                graphics.IsFullScreen = !graphics.IsFullScreen;
+                graphics.ApplyChanges();
+            }
+
+
+            
 
             // TODO: Add your update logic here
 
