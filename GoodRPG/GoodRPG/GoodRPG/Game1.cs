@@ -27,7 +27,6 @@ namespace GoodRPG
         Texture2D sprite;
         //     Texture2D speederSprite;
         Vector2 playerVelocity = new Vector2(0, 0);
-        bool standing = false;
         float rotation;
         KeyboardState prevKey;
         GamePadState prevGamePad;
@@ -36,11 +35,9 @@ namespace GoodRPG
         bool running;
         Texture2D wood;
         GamePadState gamepad;
-        List<Ninja> ninjaList = new List<Ninja>();
-        Texture2D ninjaTexture;
+
         //   float tempPos;
-        List<Speeder> speederList = new List<Speeder>();
-        float jump = 650;
+
 
 
 
@@ -94,9 +91,9 @@ namespace GoodRPG
 
            
 
-            //speederSprite = Content.Load<Texture2D>("Speeder");
+            
 
-            cam.Pos = new Vector2(682.0f, 526.0f);
+            cam.Pos = new Vector2(0, 0);
 
             gamepad = GamePad.GetState(PlayerIndex.One);
 

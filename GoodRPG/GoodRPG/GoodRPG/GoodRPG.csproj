@@ -109,9 +109,7 @@
   <ItemGroup>
     <Compile Include="Classes\Animation.cs" />
     <Compile Include="Classes\Camera2D.cs" />
-    <Compile Include="Classes\Ninja.cs" />
     <Compile Include="Classes\Player.cs" />
-    <Compile Include="Classes\Speeder.cs" />
     <Compile Include="Classes\Tile.cs" />
     <Compile Include="Classes\tileSprite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
