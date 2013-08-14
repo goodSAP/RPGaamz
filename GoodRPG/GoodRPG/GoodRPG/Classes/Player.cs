@@ -93,7 +93,7 @@ namespace Shooter
                 }
             }
 
-            if (keyboard.IsKeyDown(Keys.W) == true)
+            if (keyboard.IsKeyDown(Keys.W) == true && keyboard.IsKeyDown(Keys.A) == false && keyboard.IsKeyDown(Keys.S) == false && keyboard.IsKeyDown(Keys.D) == false)
             {
                 AnimateUp(gameTime);
                 playerDirection = 1;
@@ -101,7 +101,7 @@ namespace Shooter
                     Position.Y -= spriteSpeed;
             }
 
-            if (keyboard.IsKeyDown(Keys.A) == true)
+            if (keyboard.IsKeyDown(Keys.A) == true && keyboard.IsKeyDown(Keys.W) == false && keyboard.IsKeyDown(Keys.S) == false && keyboard.IsKeyDown(Keys.D) == false)
             {
                 playerDirection = 2;
                 AnimateLeft(gameTime);
@@ -110,7 +110,7 @@ namespace Shooter
             }
 
 
-            if (keyboard.IsKeyDown(Keys.S) == true)
+            if (keyboard.IsKeyDown(Keys.S) == true && keyboard.IsKeyDown(Keys.W) == false && keyboard.IsKeyDown(Keys.A) == false && keyboard.IsKeyDown(Keys.D) == false)
             {
                 playerDirection = 3;
                 AnimateDown(gameTime);
@@ -119,7 +119,7 @@ namespace Shooter
             }
 
 
-            if (keyboard.IsKeyDown(Keys.D) == true)
+            if (keyboard.IsKeyDown(Keys.D) == true && keyboard.IsKeyDown(Keys.W) == false && keyboard.IsKeyDown(Keys.A) == false && keyboard.IsKeyDown(Keys.S) == false)
             {
                 playerDirection = 4;
                 AnimateRight(gameTime);

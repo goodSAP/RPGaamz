@@ -23,7 +23,6 @@ namespace GoodRPG
         SpriteBatch spriteBatch;
         List<Tile> tileList = new List<Tile>();
         List<Tile> doors = new List<Tile>();
-        Texture2D crate;
         Player player;
         Texture2D sprite;
         //     Texture2D speederSprite;
@@ -34,7 +33,12 @@ namespace GoodRPG
         public Camera2D cam = new Camera2D();
         Animation animation = new Animation();
         bool running;
+
+        //Tiles
         Texture2D wood;
+        Texture2D crate;
+        Texture2D grass1;
+
         GamePadState gamepad;
         Random encounterRate = new Random();
         int partOfWorld;
@@ -46,11 +50,11 @@ namespace GoodRPG
             {                                                                                                                                                                                                /*introduce enemies here*/                                   
                  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
                  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,0,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,0,3,3,2,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,0,3,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,0,3,3,2,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,0,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
                  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
                  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
                  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
@@ -98,7 +102,7 @@ namespace GoodRPG
             
             wood = Content.Load<Texture2D>("Art/Tiles/floor board");
 
-           
+            grass1 = Content.Load<Texture2D>("Art/Tiles/grassTile1");
 
             
 
@@ -178,6 +182,20 @@ namespace GoodRPG
                             Console.WriteLine("x=" + x + "y=" + y + " is " + textureIndex);
 
                             break;
+
+                        case 3:
+
+
+                            Tile grass1Tile;
+
+                            grass1Tile = new Tile(grass1, 48, 48, new Vector2(48 * x, 48 * y), true);
+
+                            tileList.Add(grass1Tile);
+
+                            Console.WriteLine("x=" + x + "y=" + y + " is " + textureIndex);
+
+                            break;
+
 
 
 
