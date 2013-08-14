@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using TestGame.TileEngine;
 using Shooter;
 using tile_r;
-//a
+
 namespace GoodRPG
 {
     /// <summary>
@@ -22,7 +22,8 @@ namespace GoodRPG
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         List<Tile> tileList = new List<Tile>();
-        List<Tile> doors = new List<Tile>();
+        List<Tile> encGroundPatches = new List<Tile>();
+        List<Tile> doorList = new List<Tile>();
         Player player;
         Texture2D sprite;
         //     Texture2D speederSprite;
@@ -40,9 +41,12 @@ namespace GoodRPG
         Texture2D grass1;
 
         GamePadState gamepad;
-        Random encounterRate = new Random();
+
+        //Encounter Vars
+        
+
         int partOfWorld;
-        //   float tempPos;
+        //      float tempPos;
 
 
 
@@ -190,7 +194,7 @@ namespace GoodRPG
 
                             grass1Tile = new Tile(grass1, 48, 48, new Vector2(48 * x, 48 * y), true);
 
-                            tileList.Add(grass1Tile);
+                            encGroundPatches.Add(grass1Tile);
 
                             Console.WriteLine("x=" + x + "y=" + y + " is " + textureIndex);
 
@@ -272,6 +276,22 @@ namespace GoodRPG
             }
 
 
+            //Encounter stuff
+
+            foreach (Tile tile in encGroundPatches)
+            {
+                if (tile.BoundingBox.Intersects(player.hitbox))
+                {
+
+                    Random encounterStuff = new Random();
+                    player.Position.X = encounterStuff.Next(0, 1000);
+                    player.Position.Y = encounterStuff.Next(0, 600);
+                    
+                    
+                }
+            }
+
+
 
 
 
@@ -301,6 +321,14 @@ namespace GoodRPG
             {
                 tile.Draw(spriteBatch);
 
+            }
+            foreach (Tile tile in doorList)
+            {
+                tile.Draw(spriteBatch);
+            }
+            foreach (Tile tile in encGroundPatches)
+            {
+                tile.Draw(spriteBatch);
             }
 
             player.Draw(spriteBatch,0f);
