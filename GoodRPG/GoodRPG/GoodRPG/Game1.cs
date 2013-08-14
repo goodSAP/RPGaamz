@@ -35,6 +35,7 @@ namespace GoodRPG
         bool running;
         Texture2D wood;
         GamePadState gamepad;
+        Random encounterRate = new Random();
 
         //   float tempPos;
 
@@ -225,6 +226,15 @@ namespace GoodRPG
             
             player.Update(gameTime);
             
+            foreach (Tile tile in tileList)
+            {
+                if (tile.BoundingBox.Contains(player.hitbox))
+                {
+                    
+                }
+            }
+
+
 
             // TODO: Add your update logic here
 
