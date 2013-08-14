@@ -91,7 +91,30 @@ namespace Shooter
                 }
             }
 
-            if (keyboard.IsKeyDown(Keys.Right) == true)
+            if (keyboard.IsKeyDown(Keys.W) == true)
+            {
+                AnimateUp(gameTime);
+                if (Position.Y > 25)
+                    Position.Y -= spriteSpeed;
+            }
+
+            if (keyboard.IsKeyDown(Keys.A) == true)
+            {
+                AnimateLeft(gameTime);
+                if (Position.X > 20)
+                    Position.X -= spriteSpeed;
+            }
+
+
+            if (keyboard.IsKeyDown(Keys.S) == true)
+            {
+                AnimateDown(gameTime);
+                if (Position.Y < 575)
+                    Position.Y += spriteSpeed;
+            }
+
+
+            if (keyboard.IsKeyDown(Keys.D) == true)
             {
                 AnimateRight(gameTime);
                 if (Position.X < 780)
@@ -99,26 +122,9 @@ namespace Shooter
             }
 
 
-            if (keyboard.IsKeyDown(Keys.Left) == true)
-            {
-                AnimateLeft(gameTime);
-                if (Position.X > 20)
-                    Position.X -= spriteSpeed;
-            }
 
-            if (keyboard.IsKeyDown(Keys.Down) == true)
-            {
-                AnimateDown(gameTime);
-                if (Position.Y < 575)
-                    Position.Y += spriteSpeed;
-            }
 
-            if (keyboard.IsKeyDown(Keys.Up) == true)
-            {
-                AnimateUp(gameTime);
-                if (Position.Y > 25)
-                    Position.Y -= spriteSpeed;
-            }
+            
 
           
 

@@ -22,6 +22,7 @@ namespace GoodRPG
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         List<Tile> tileList = new List<Tile>();
+        List<Tile> doors = new List<Tile>();
         Texture2D crate;
         Player player;
         Texture2D sprite;
@@ -36,24 +37,28 @@ namespace GoodRPG
         Texture2D wood;
         GamePadState gamepad;
         Random encounterRate = new Random();
-
+        int partOfWorld;
         //   float tempPos;
-
 
 
 
         int[,] map = new int[,]
             {                                                                                                                                                                                                /*introduce enemies here*/                                   
-                 {1,1,1,1,1,1,1,1,1,1,},
-                 {1,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,0,0,1,},
-                 {1,1,1,1,1,1,1,1,1,1,},
+                 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
+                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
             };
 
 
@@ -74,6 +79,8 @@ namespace GoodRPG
         {
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
+
+            
 
             base.Initialize();
         }
@@ -119,6 +126,9 @@ namespace GoodRPG
 
             
             player = new Player(sprite,1,32,48,new Rectangle(0,0,1280,720));
+            player.Position.X = 500;
+            player.Position.Y = 500;
+            
             KeyboardState prevKey = Keyboard.GetState();
             prevGamePad = GamePad.GetState(PlayerIndex.One);
 
@@ -138,8 +148,7 @@ namespace GoodRPG
                 for (int x = 0; x < tileMapWidth; x++)
                 {
                     int textureIndex = map[y, x];
-
-
+                    
 
                     switch (textureIndex)
                     {
@@ -157,7 +166,20 @@ namespace GoodRPG
 
                             break;
 
-                       
+                        case 2:
+
+
+                            Tile crateTile;
+
+                            crateTile = new Tile(crate, 48, 48, new Vector2(48 * x, 48 * y), false);
+
+                            tileList.Add(crateTile);
+
+                            Console.WriteLine("x=" + x + "y=" + y + " is " + textureIndex);
+
+                            break;
+
+
 
                         default:
                             Console.WriteLine("x=" + x + " y=" + y + " is " + textureIndex);
@@ -209,10 +231,16 @@ namespace GoodRPG
             {
                 if (tile.BoundingBox.Intersects(player.hitbox))
                 {
-                    player.Position.X = 500;
-                    player.Position.Y = 500;
+                    if (tile.Landable == false)
+                    {
+                        player.Position.X = 500;
+                        player.Position.Y = 500;
+                    }
                 }
             }
+
+
+
 
 
 
