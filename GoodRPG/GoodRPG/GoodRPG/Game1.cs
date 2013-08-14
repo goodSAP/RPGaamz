@@ -117,7 +117,7 @@ namespace GoodRPG
 
 
             player.Initialize(animation, new Vector2(550, 500));
-
+            player.PlayerAnimation.draw = true;
             KeyboardState prevKey = Keyboard.GetState();
             prevGamePad = GamePad.GetState(PlayerIndex.One);
 
@@ -151,6 +151,8 @@ namespace GoodRPG
                             tileList.Add(tile);
 
                             Console.WriteLine("x=" + x + " y=" + y + " is " + textureIndex);
+
+                            
 
                             break;
 
@@ -220,6 +222,7 @@ namespace GoodRPG
                 this.Exit();
             }
 
+            
             player.Update(gameTime);
             
 
