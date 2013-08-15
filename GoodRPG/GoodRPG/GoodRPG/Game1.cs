@@ -43,7 +43,9 @@ namespace GoodRPG
         GamePadState gamepad;
 
         //Encounter Vars
-        
+        int encounterInt;
+        Random encounterSuccessRoll = new Random();
+        bool encounterSuccess = false;
 
         int partOfWorld;
         //      float tempPos;
@@ -282,11 +284,15 @@ namespace GoodRPG
             {
                 if (tile.BoundingBox.Intersects(player.hitbox))
                 {
-
-                    Random encounterStuff = new Random();
-                    player.Position.X = encounterStuff.Next(0, 1000);
-                    player.Position.Y = encounterStuff.Next(0, 600);
-                    
+                    encounterInt = encounterSuccessRoll.Next(0, 1000);
+                    if (encounterInt > 500)
+                    {
+                        encounterSuccess = true;
+                    }
+                    else
+                    {
+                        encounterSuccess = false;
+                    }
                     
                 }
             }
