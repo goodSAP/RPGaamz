@@ -39,7 +39,7 @@ namespace GoodRPG
         Texture2D wood;
         Texture2D crate;
         Texture2D grass1;
-
+        Texture2D hole;
         GamePadState gamepad;
 
 
@@ -81,14 +81,14 @@ namespace GoodRPG
         int[,] map = new int[,]
             {                                                                                                                                                                                                /*introduce enemies here*/                                   
                  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
-                 {1,0,0,0,0,0,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,2,3,3,3,3,3,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,2,3,3,2,3,3,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,2,3,2,2,2,3,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,2,3,3,2,3,3,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,2,3,3,3,3,3,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,2,2,2,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+                 {1,3,3,3,3,3,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,1,},
+                 {1,3,3,3,3,3,2,0,0,0,0,0,2,3,3,3,3,3,3,3,3,3,3,3,3,3,1,},
+                 {1,3,3,3,3,3,2,0,0,0,0,0,2,3,3,3,3,3,3,3,3,3,3,3,3,3,1,},
+                 {1,3,3,3,3,3,2,0,2,2,2,0,2,3,3,3,3,3,3,3,3,3,3,3,3,3,1,},
+                 {1,3,3,3,3,3,2,0,0,2,0,0,2,3,3,3,3,3,3,3,3,3,3,3,3,3,1,},
+                 {1,3,3,3,3,3,2,0,0,0,0,0,2,3,3,3,3,3,3,3,3,3,3,3,3,3,1,},
+                 {1,3,3,3,3,3,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,1,},
+                 {1,3,3,3,3,3,3,3,2,4,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,1,},
                  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
                  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
                  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
@@ -145,7 +145,7 @@ namespace GoodRPG
 
             grass1 = Content.Load<Texture2D>("Art/Tiles/grassTile1");
 
-            
+            hole = Content.Load<Texture2D>("Art/Tiles/black");
 
             
 
@@ -239,6 +239,18 @@ namespace GoodRPG
 
                             break;
 
+                        case 4:
+
+
+                            Tile holeTile;
+
+                            holeTile = new Tile(hole, 48, 48, new Vector2(48 * x, 48 * y), true);
+
+                            doorList.Add(holeTile);
+
+                            Console.WriteLine("x=" + x + "y=" + y + "is" + textureIndex);
+
+                            break;
 
 
 
@@ -329,13 +341,24 @@ namespace GoodRPG
                     }
 
 
+                    foreach (Tile tile in doorList)
+                    {
+                        foreach (Tile holeTile in doorList)
+                        {
+                            if (tile.BoundingBox.Contains(player.hitbox))
+                            {
+                                player.Position.Y = 290;
+                            }
+                        }                        
+                    }
+
                     //Encounter stuff
 
                     foreach (Tile tile in encGroundPatches)
                     {
                         if (tile.BoundingBox.Intersects(player.hitbox)&&player.moving==true)
                         {
-                            encounterInt = encounterSuccessRoll.Next(0, 1000);
+                            encounterInt = encounterSuccessRoll.Next(0, 10000);
 
                             if (encounterInt <= 4)
                             {
