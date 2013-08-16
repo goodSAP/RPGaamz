@@ -24,7 +24,7 @@ namespace GoodRPG
         List<Tile> tileList = new List<Tile>();
         List<Tile> encGroundPatches = new List<Tile>();
         List<Tile> doorList = new List<Tile>();
-        Player player;
+        
         Texture2D sprite;
         //     Texture2D speederSprite;
         Vector2 playerVelocity = new Vector2(0, 0);
@@ -42,7 +42,20 @@ namespace GoodRPG
 
         GamePadState gamepad;
 
+
+        //Player Vars
+        Player player;
+        int playerAttack;
+        int playerDefense;
+        int playerLevel;
+        int playerArmour;
+        int playerWeapon;
+        int playerHitpoints;
+
+
         //Encounter Vars
+        Enemies enemyStuff;
+        Encounter encounters;
         int encounterInt;
         Random encounterSuccessRoll = new Random();
         bool encounterSuccess = false;
@@ -250,6 +263,26 @@ namespace GoodRPG
 
             player.handleSpriteMovement(gameTime);
             player.Update(gameTime);
+            //Giving the stats to the stats
+            playerLevel = 1;
+            playerArmour = 0;
+            playerAttack = playerLevel * 5;
+            playerDefense = playerLevel * 3;
+            playerWeapon = 0;
+            playerHitpoints = playerLevel * 8;
+
+            player.playerAttack = playerAttack;
+            player.playerDefense = playerDefense;
+            player.playerLevel = playerLevel;
+            player.playerArmour = playerArmour;
+            player.playerWeapon = playerWeapon;
+            player.playerHitpoints = playerHitpoints;
+
+
+
+
+
+
             
             foreach (Tile tile in tileList)
             {
@@ -285,7 +318,7 @@ namespace GoodRPG
                 if (tile.BoundingBox.Intersects(player.hitbox))
                 {
                     encounterInt = encounterSuccessRoll.Next(0, 1000);
-                    if (encounterInt > 500)
+                    if (encounterInt == 666)
                     {
                         encounterSuccess = true;
                     }
@@ -295,6 +328,12 @@ namespace GoodRPG
                     }
                     
                 }
+            }
+
+            if (encounterSuccess == true)
+            {
+                encounters.runEncounter(playerLevel, player.Position);
+                
             }
 
 
@@ -336,7 +375,10 @@ namespace GoodRPG
             {
                 tile.Draw(spriteBatch);
             }
-
+            if (encounterSuccess == true)
+            {
+                enemyStuff.Draw(spriteBatch);
+            }
             player.Draw(spriteBatch,0f);
 
             spriteBatch.End();

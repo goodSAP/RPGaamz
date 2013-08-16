@@ -6,9 +6,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using tile_r;
+using Shooter;
 
-
-namespace Shooter
+namespace GoodRPG
 {
     class Player
     {
@@ -23,10 +23,7 @@ namespace Shooter
 
         // State of the player
         public bool Active;
-
-        // Amount of hit points that player has
-        public int Health;
-
+        
         // Get the width of the player ship
         public int Width
         {
@@ -52,6 +49,14 @@ namespace Shooter
         Texture2D texture;
 
         public int playerDirection;
+
+        public int playerAttack;
+        public int playerDefense;
+        public int playerHitpoints;
+        public int playerLevel;
+        public int playerWeapon;
+        public int playerArmour;
+
 
         KeyboardState keyboard;
         KeyboardState prevKeyboard;
@@ -233,7 +238,8 @@ namespace Shooter
         // Update the player animation
         public void Update(GameTime gameTime)
         {
-          
+            
+            
 
             hitbox  = new Rectangle((int)Position.X, (int)Position.Y, spriteWidth,spriteHeight);
         }
