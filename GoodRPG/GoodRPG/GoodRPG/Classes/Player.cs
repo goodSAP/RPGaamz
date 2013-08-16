@@ -98,7 +98,7 @@ namespace GoodRPG
                 }
             }
 
-            if (keyboard.IsKeyDown(Keys.W) == true && keyboard.IsKeyDown(Keys.A) == false && keyboard.IsKeyDown(Keys.S) == false && keyboard.IsKeyDown(Keys.D) == false)
+            if (keyboard.IsKeyDown(Keys.W))
             {
                 AnimateUp(gameTime);
                 playerDirection = 1;
@@ -106,7 +106,7 @@ namespace GoodRPG
                     Position.Y -= spriteSpeed;
             }
 
-            if (keyboard.IsKeyDown(Keys.A) == true && keyboard.IsKeyDown(Keys.W) == false && keyboard.IsKeyDown(Keys.S) == false && keyboard.IsKeyDown(Keys.D) == false)
+            else if (keyboard.IsKeyDown(Keys.A))
             {
                 playerDirection = 2;
                 AnimateLeft(gameTime);
@@ -115,7 +115,7 @@ namespace GoodRPG
             }
 
 
-            if (keyboard.IsKeyDown(Keys.S) == true && keyboard.IsKeyDown(Keys.W) == false && keyboard.IsKeyDown(Keys.A) == false && keyboard.IsKeyDown(Keys.D) == false)
+            else if (keyboard.IsKeyDown(Keys.S))
             {
                 playerDirection = 3;
                 AnimateDown(gameTime);
@@ -124,7 +124,7 @@ namespace GoodRPG
             }
 
 
-            if (keyboard.IsKeyDown(Keys.D) == true && keyboard.IsKeyDown(Keys.W) == false && keyboard.IsKeyDown(Keys.A) == false && keyboard.IsKeyDown(Keys.S) == false)
+            else if (keyboard.IsKeyDown(Keys.D))
             {
                 playerDirection = 4;
                 AnimateRight(gameTime);
