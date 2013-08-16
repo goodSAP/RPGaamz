@@ -64,6 +64,17 @@ namespace GoodRPG
         //      float tempPos;
 
 
+        //Gamestates
+        enum GameStates
+        {
+            TitleScreen, GameScreen, EncounterScreen
+
+        };
+
+        GameStates gameState = GameStates.GameScreen;
+
+
+
 
         int[,] map = new int[,]
             {                                                                                                                                                                                                /*introduce enemies here*/                                   
@@ -176,6 +187,8 @@ namespace GoodRPG
                     switch (textureIndex)
                     {
                         case 1:
+
+
                             Tile tile;
                             Vector2 pos = new Vector2(48 * x, 48 * y);
 
@@ -224,7 +237,6 @@ namespace GoodRPG
                     }
                 }
             }
-
         }
 
 
@@ -261,87 +273,90 @@ namespace GoodRPG
                 this.Exit();
             }
 
-            player.handleSpriteMovement(gameTime);
-            player.Update(gameTime);
-            //Giving the stats to the stats
-            playerLevel = 1;
-            playerArmour = 0;
-            playerAttack = playerLevel * 5;
-            playerDefense = playerLevel * 3;
-            playerWeapon = 0;
-            playerHitpoints = playerLevel * 8;
-
-            player.playerAttack = playerAttack;
-            player.playerDefense = playerDefense;
-            player.playerLevel = playerLevel;
-            player.playerArmour = playerArmour;
-            player.playerWeapon = playerWeapon;
-            player.playerHitpoints = playerHitpoints;
-
-
-
-
-
-
-            
-            foreach (Tile tile in tileList)
+            switch (gameState)
             {
-                if (tile.BoundingBox.Intersects(player.hitbox))
-                {
-                    if (tile.Landable == false)
+                case GameStates.GameScreen:
+
+                    player.handleSpriteMovement(gameTime);
+                    player.Update(gameTime);
+                    //Giving the stats to the stats
+                    playerLevel = 1;
+                    playerArmour = 0;
+                    playerAttack = playerLevel * 5;
+                    playerDefense = playerLevel * 3;
+                    playerWeapon = 0;
+                    playerHitpoints = playerLevel * 8;
+
+                    player.playerAttack = playerAttack;
+                    player.playerDefense = playerDefense;
+                    player.playerLevel = playerLevel;
+                    player.playerArmour = playerArmour;
+                    player.playerWeapon = playerWeapon;
+                    player.playerHitpoints = playerHitpoints;
+
+
+
+                    foreach (Tile tile in tileList)
                     {
-                        if (player.playerDirection == 1)
+                        if (tile.BoundingBox.Intersects(player.hitbox))
                         {
-                            player.Position.Y += 2;
-                        }
-                        if (player.playerDirection == 2)
-                        {
-                            player.Position.X += 2;
-                        }
-                        if (player.playerDirection == 3)
-                        {
-                            player.Position.Y -= 2;
-                        }
-                        if (player.playerDirection == 4)
-                        {
-                            player.Position.X -= 2;
+                            if (tile.Landable == false)
+                            {
+                                if (player.playerDirection == 1)
+                                {
+                                    player.Position.Y += 2;
+                                }
+                                if (player.playerDirection == 2)
+                                {
+                                    player.Position.X += 2;
+                                }
+                                if (player.playerDirection == 3)
+                                {
+                                    player.Position.Y -= 2;
+                                }
+                                if (player.playerDirection == 4)
+                                {
+                                    player.Position.X -= 2;
+                                }
+                            }
                         }
                     }
-                }
-            }
 
 
-            //Encounter stuff
+                    //Encounter stuff
 
-            foreach (Tile tile in encGroundPatches)
-            {
-                if (tile.BoundingBox.Intersects(player.hitbox))
-                {
-                    encounterInt = encounterSuccessRoll.Next(0, 1000);
-                    if (encounterInt == 666)
+                    foreach (Tile tile in encGroundPatches)
                     {
-                        encounterSuccess = true;
+                        if (tile.BoundingBox.Intersects(player.hitbox))
+                        {
+                            encounterInt = encounterSuccessRoll.Next(0, 1000);
+
+                            if (encounterInt == 666)
+                            {
+                                encounterSuccess = true;
+                            }
+                            else
+                            {
+                                encounterSuccess = false;
+                            }
+                        }
                     }
-                    else
+
+                    if (encounterSuccess == true)
                     {
-                        encounterSuccess = false;
+                        encounters.runEncounter(playerLevel, player.Position);
+
                     }
-                    
-                }
+
+                    break;
+
+
+
             }
-
-            if (encounterSuccess == true)
-            {
-                encounters.runEncounter(playerLevel, player.Position);
-                
-            }
-
-
-
-
-
-
-            // TODO: Add your update logic here
+        
+        
+    
+                // TODO: Add your update logic here
 
             base.Update(gameTime);
         }

@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using tile_r;
 
-//TEMPORARILY FUCK THIS SHIT
+
 
 namespace GoodRPG
 {
@@ -35,7 +35,7 @@ namespace GoodRPG
 
 
       
-        public void createEnemy(int enemySelected, Texture2D texture, Vector2 Position, Rectangle sourceRect)
+        public void createEnemy(int enemySelected, Vector2 Position, Rectangle sourceRect)
         {
             enemyLevel = encounterForEnemies.enemyLevel;
             enemyAttack = encounterForEnemies.enemyAttack;
@@ -43,14 +43,28 @@ namespace GoodRPG
             enemyHitpoints = encounterForEnemies.enemyHitpoints;
 
             this.sourceRect = sourceRect;
-            this.texture = texture;
             this.Position = Position;
+
+
+
+            if (enemySelected == 1)
+            {
+                rat(texture);
+            }
+
+
 
 
             
         }
 
-
+        private void rat(Texture2D texture)
+        {
+            enemyAttack = (enemyLevel * 2) + 2;
+            enemyDefense = enemyLevel - 1;
+            enemyHitpoints = (enemyLevel * 2) + 3;
+            
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {

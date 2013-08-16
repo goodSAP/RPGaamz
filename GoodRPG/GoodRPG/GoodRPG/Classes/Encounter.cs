@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using tile_r;
 
-//TEMPORARILY FUCK THIS SHIT
+
 
 namespace GoodRPG
 {
@@ -39,7 +39,7 @@ namespace GoodRPG
             enemyLevel = playerLevel;
             this.Position = Position;
 
-            enemyClassVar.createEnemy(enemySelected, texture, Position, sourceRect);
+            enemyClassVar.createEnemy(enemySelected, Position, sourceRect);
             
             
         }
