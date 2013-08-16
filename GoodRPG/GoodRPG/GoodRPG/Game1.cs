@@ -59,6 +59,8 @@ namespace GoodRPG
         int encounterInt;
         Random encounterSuccessRoll = new Random();
         bool encounterSuccess = false;
+        bool encounterFinished = true;
+
 
         int partOfWorld;
         //      float tempPos;
@@ -114,7 +116,16 @@ namespace GoodRPG
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
 
+            //Giving the stats to the stats
+            playerLevel = 1;
+            playerArmour = 0;
+            playerAttack = playerLevel * 5;
+            playerDefense = playerLevel * 3;
+            playerWeapon = 0;
+            playerHitpoints = playerLevel * 8;
+
             
+
 
             base.Initialize();
         }
@@ -273,19 +284,11 @@ namespace GoodRPG
                 this.Exit();
             }
 
+
+
             switch (gameState)
             {
                 case GameStates.GameScreen:
-
-                    player.handleSpriteMovement(gameTime);
-                    player.Update(gameTime);
-                    //Giving the stats to the stats
-                    playerLevel = 1;
-                    playerArmour = 0;
-                    playerAttack = playerLevel * 5;
-                    playerDefense = playerLevel * 3;
-                    playerWeapon = 0;
-                    playerHitpoints = playerLevel * 8;
 
                     player.playerAttack = playerAttack;
                     player.playerDefense = playerDefense;
@@ -293,7 +296,10 @@ namespace GoodRPG
                     player.playerArmour = playerArmour;
                     player.playerWeapon = playerWeapon;
                     player.playerHitpoints = playerHitpoints;
+                    player.handleSpriteMovement(gameTime);
+                    player.Update(gameTime);
 
+                    
 
 
                     foreach (Tile tile in tileList)
@@ -344,9 +350,20 @@ namespace GoodRPG
 
                     if (encounterSuccess == true)
                     {
-                        encounters.runEncounter(playerLevel, player.Position);
-
+                        if (encounterFinished == true)
+                        {
+                            gameState = GameStates.EncounterScreen;
+                        }
                     }
+
+                    break;
+
+                case GameStates.EncounterScreen:
+
+
+
+
+                    
 
                     break;
 
@@ -376,25 +393,31 @@ namespace GoodRPG
                         null,
                         null,
                         cam.get_transformation(GraphicsDevice /*Send the variable that has your graphic device here*/));
-            
-            foreach (Tile tile in tileList)
+            if (gameState == GameStates.GameScreen)
             {
-                tile.Draw(spriteBatch);
+                foreach (Tile tile in tileList)
+                {
+                    tile.Draw(spriteBatch);
+                }
+                foreach (Tile tile in doorList)
+                {
+                    tile.Draw(spriteBatch);
+                }
+                foreach (Tile tile in encGroundPatches)
+                {
+                    tile.Draw(spriteBatch);
+                }
+                if (encounterSuccess == true)
+                {
+                    enemyStuff.Draw(spriteBatch);
+                }
+                player.Draw(spriteBatch, 0f);
+            }
 
-            }
-            foreach (Tile tile in doorList)
+            if (gameState == GameStates.EncounterScreen)
             {
-                tile.Draw(spriteBatch);
+                player.Draw(spriteBatch, 0f);
             }
-            foreach (Tile tile in encGroundPatches)
-            {
-                tile.Draw(spriteBatch);
-            }
-            if (encounterSuccess == true)
-            {
-                enemyStuff.Draw(spriteBatch);
-            }
-            player.Draw(spriteBatch,0f);
 
             spriteBatch.End();
 
