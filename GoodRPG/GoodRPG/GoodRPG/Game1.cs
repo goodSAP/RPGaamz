@@ -335,9 +335,9 @@ namespace GoodRPG
                     {
                         if (tile.BoundingBox.Intersects(player.hitbox)&&player.moving==true)
                         {
-                            encounterInt = encounterSuccessRoll.Next(0, 10000);
+                            encounterInt = encounterSuccessRoll.Next(0, 1000);
 
-                            if (encounterInt <= 40)
+                            if (encounterInt <= 4)
                             {
                                 encounterSuccess = true;
                             }
