@@ -81,14 +81,14 @@ namespace GoodRPG
         int[,] map = new int[,]
             {                                                                                                                                                                                                /*introduce enemies here*/                                   
                  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
-                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,3,3,2,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,3,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,3,3,2,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
-                 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,2,3,3,3,3,3,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,2,3,3,2,3,3,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,2,3,2,2,2,3,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,2,3,3,2,3,3,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,2,3,3,3,3,3,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,2,2,2,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+                 {1,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
                  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
                  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
                  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
@@ -203,7 +203,7 @@ namespace GoodRPG
                             Tile tile;
                             Vector2 pos = new Vector2(48 * x, 48 * y);
 
-                            tile = new Tile(wood, 48, 48, pos, true);
+                            tile = new Tile(wood, 48, 48, pos, false);
 
                             tileList.Add(tile);
 
@@ -333,11 +333,11 @@ namespace GoodRPG
 
                     foreach (Tile tile in encGroundPatches)
                     {
-                        if (tile.BoundingBox.Intersects(player.hitbox))
+                        if (tile.BoundingBox.Intersects(player.hitbox)&&player.moving==true)
                         {
-                            encounterInt = encounterSuccessRoll.Next(0, 1000);
+                            encounterInt = encounterSuccessRoll.Next(0, 10000);
 
-                            if (encounterInt == 666)
+                            if (encounterInt <= 40)
                             {
                                 encounterSuccess = true;
                             }
@@ -360,8 +360,12 @@ namespace GoodRPG
 
                 case GameStates.EncounterScreen:
 
-
-
+                    encounterFinished = false;
+                    if (keyBoard.IsKeyDown(Keys.Enter))
+                    {
+                        encounterFinished = true;
+                        gameState = GameStates.GameScreen;
+                    }
 
                     
 
@@ -407,10 +411,12 @@ namespace GoodRPG
                 {
                     tile.Draw(spriteBatch);
                 }
+                /*
                 if (encounterSuccess == true)
                 {
                     enemyStuff.Draw(spriteBatch);
                 }
+                */
                 player.Draw(spriteBatch, 0f);
             }
 

@@ -56,7 +56,7 @@ namespace GoodRPG
         public int playerLevel;
         public int playerWeapon;
         public int playerArmour;
-
+        public bool moving = false;
 
         KeyboardState keyboard;
         KeyboardState prevKeyboard;
@@ -75,10 +75,11 @@ namespace GoodRPG
         {
             prevKeyboard = keyboard;
             keyboard = Keyboard.GetState();
-
+            
             sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
             if (keyboard.GetPressedKeys().Length == 0)
             {
+                moving = false;
 
                 if (currentFrame > 0 && currentFrame < 4)
                 {
@@ -102,6 +103,7 @@ namespace GoodRPG
             {
                 AnimateUp(gameTime);
                 playerDirection = 1;
+                moving = true;
                 if (Position.Y > 0)
                     Position.Y -= spriteSpeed;
             }
@@ -110,6 +112,7 @@ namespace GoodRPG
             {
                 playerDirection = 2;
                 AnimateLeft(gameTime);
+                moving = true;
                 if (Position.X > 0)
                     Position.X -= spriteSpeed;
             }
@@ -119,6 +122,7 @@ namespace GoodRPG
             {
                 playerDirection = 3;
                 AnimateDown(gameTime);
+                moving = true;
                 if (Position.Y < 672)
                     Position.Y += spriteSpeed;
             }
@@ -128,11 +132,12 @@ namespace GoodRPG
             {
                 playerDirection = 4;
                 AnimateRight(gameTime);
+                moving = true;
                 if (Position.X < 1248)
                     Position.X += spriteSpeed;
             }
 
-
+            
 
 
             
