@@ -153,15 +153,13 @@ namespace GoodRPG
 
 
             Conversation.Initialize(Content.Load<SpriteFont>(@"Fonts\Segoe"),
-               Content.Load<Texture2D>(@"Textures\DialogueBoxBackground"),
-               new Rectangle(0, 0, 400, 1000),
-               Content.Load<Texture2D>(@"Textures\BorderImage"),
-               5,
-               Color.Black,
-               Content.Load<Texture2D>(@"Textures\ConversationContinueIcon"),
-               Content.RootDirectory + @"\Conversations\");
-
-            Conversation.BoxPosition = new Vector2(1280 - 600, 720 - 150);
+                Content.Load<Texture2D>(@"Textures\DialogueBoxBackground"),
+                new Rectangle(50, 50, 400, 100),
+                Content.Load<Texture2D>(@"Textures\BorderImage"),
+                5,
+                Color.Black,
+                Content.Load<Texture2D>(@"Textures\ConversationContinueIcon"),
+                Content);
 
             // Load Avatars
             DirectoryInfo directoryInfo = new DirectoryInfo(Content.RootDirectory + @"\Avatars\");
@@ -176,7 +174,7 @@ namespace GoodRPG
                 Conversation.Avatars.Add(Content.Load<Texture2D>(@"Avatars\" + i));
             }
 
-
+            Conversation.Box = new Rectangle(0, 720 - 150, 1280, 150);
             gamepad = GamePad.GetState(PlayerIndex.One);
 
             Createflor();
