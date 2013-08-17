@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Generic="System.Collections.Generic">
+  <Asset Type="Generic:List[ConversationEngine.Speaker]">
+    <Item>
+      <avatarState>Normal</avatarState>
+      <AvatarIndex>2</AvatarIndex>
+      <Message>This is a Test</Message>
+      <Choices Null="true" />
+    </Item>
+    <Item>
+      <avatarState>Sad</avatarState>
+      <AvatarIndex>2</AvatarIndex>
+      <Message>Reid Flamm, Golden Sun is a great game. You really should play the first and second. Like, really. Or Ian will smite you. Alright, now I'm just testing to see how many lines I can get in this dialogue box. Like, really. It's important, ok? Don't hate. I need to figure out when I can artificially break one guy talking into two or three boxes. Cause yeah, that's important. But oh man, how do I manage that with different fonts? That will be an issue. Hrm..... Oh hey, it works. Go figure!</Message>
+      <Choices Null="true" />
+    </Item>
+    <Item>
+      <avatarState>Surprised</avatarState>
+      <AvatarIndex>2</AvatarIndex>
+      <Message>Return to the first speaker, and try ending with a preformatted string. And..... end.
+ 
+         -- Ian</Message>
+      <Choices Null="true" />
+    </Item>
+    <Item>
+      <avatarState>Angry</avatarState>
+      <AvatarIndex>2</AvatarIndex>
+      <Message>This is just a fourth avatar state test.</Message>
+      <Choices Null="true" />
+    </Item>
+    <Item>
+      <avatarState>Normal</avatarState>
+      <AvatarIndex>2</AvatarIndex>
+      <Message></Message>
+      <Choices>
+        <Item>
+          <Key>Test Choice 1</Key>
+          <Value>2</Value>
+        </Item>
+        <Item>
+          <Key>Test Choice 2</Key>
+          <Value>2</Value>
+        </Item>
+        <Item>
+          <Key>Test Choice 3</Key>
+          <Value>2</Value>
+        </Item>
+      </Choices>
+    </Item>
+  </Asset>
+</XnaContent>
