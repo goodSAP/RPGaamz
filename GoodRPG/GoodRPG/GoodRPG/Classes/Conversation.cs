@@ -21,7 +21,6 @@ namespace DialogueEngine
 
         public static SpriteFont spriteFont;
 
-        public static SoundEffect soundEffect;
 
         private static Rectangle textRectangle;
         private static string message;
@@ -57,6 +56,7 @@ namespace DialogueEngine
         public static Vector2 BoxPosition
         {
             get { return new Vector2(boxRectangle.X, boxRectangle.Y); }
+            set { boxRectangle.X = (int)value.X; boxRectangle.Y = (int)value.Y; }
         }
 
         public static Vector2 StringPosition
@@ -90,10 +90,9 @@ namespace DialogueEngine
         /// <param name="bWidth">Window Border Width</param>
         /// <param name="bColor">Window Border Color</param>
         /// <param name="sIcon">Continue Reading Icon</param>
-        public static void Initialize(SpriteFont font, SoundEffect sound, Texture2D background, Rectangle initialRectangle, Texture2D bImage, int bWidth, Color bColor, Texture2D sIcon, string path)
+        public static void Initialize(SpriteFont font, Texture2D background, Rectangle initialRectangle, Texture2D bImage, int bWidth, Color bColor, Texture2D sIcon, string path)
         {
             spriteFont = font;
-            soundEffect = sound;
             backgroundImage = background;
             boxRectangle = initialRectangle;
             textRectangle = new Rectangle(initialRectangle.X + 10, initialRectangle.Y + 10, initialRectangle.Width - 20, initialRectangle.Height - 20);
@@ -120,9 +119,9 @@ namespace DialogueEngine
             ConversationSpeakers.Add(new Speaker(1, "Reid Flamm, Golden Sun is a great game. You really should play the first and second. Like, really. Or Ian will smite you. Alright, now I'm just testing to see how many lines I can get in this dialogue box. Like, really. It's important, ok? Don't hate. I need to figure out when I can artificially break one guy talking into two or three boxes. Cause yeah, that's important. But oh man, how do I manage that with different fonts? That will be an issue. Hrm..... Oh hey, it works. Go figure!"));
             ConversationSpeakers.Add(new Speaker(0, "Return to the first speaker, and try ending with a preformatted string. And..... end.\n \n         -- Ian"));
             CreateBox(ConversationSpeakers[currentSpeakerIndex].Message, 
-                new Rectangle(100, 200, 600, 150),
-                new Rectangle(250, 215, 445, 115),
-                new Rectangle(120, 215, 115, 115));
+                new Rectangle(boxRectangle.X, boxRectangle.Y, 600, 150),
+                new Rectangle(boxRectangle.X+150, boxRectangle.Y+15, 445, 115),
+                new Rectangle(boxRectangle.X + 20, boxRectangle.Y + 15, 115, 115));
         }
         
         /// <summary>
@@ -322,7 +321,7 @@ namespace DialogueEngine
             {
                 if (currentSpeakerIndex + 1 < ConversationSpeakers.Count)
                 {
-                    soundEffect.Play();
+                    
                     currentSpeakerIndex++;
                     revealedMessage = "";
                     stringIndex = 0;
