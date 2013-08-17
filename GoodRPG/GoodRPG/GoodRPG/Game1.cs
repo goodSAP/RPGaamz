@@ -11,6 +11,9 @@ using Microsoft.Xna.Framework.Media;
 using TestGame.TileEngine;
 using Shooter;
 using tile_r;
+using DialogueEngine;
+using System.IO;
+using System.Collections;
 
 namespace GoodRPG
 {
@@ -61,6 +64,7 @@ namespace GoodRPG
         bool encounterSuccess = false;
         bool encounterFinished = true;
 
+        bool ConversationStarted = false;
 
         int partOfWorld;
         //      float tempPos;
@@ -147,7 +151,31 @@ namespace GoodRPG
 
             hole = Content.Load<Texture2D>("Art/Tiles/black");
 
-            
+
+            Conversation.Initialize(Content.Load<SpriteFont>(@"Fonts\Segoe"),
+               Content.Load<Texture2D>(@"Textures\DialogueBoxBackground"),
+               new Rectangle(0, 0, 400, 1000),
+               Content.Load<Texture2D>(@"Textures\BorderImage"),
+               5,
+               Color.Black,
+               Content.Load<Texture2D>(@"Textures\ConversationContinueIcon"),
+               Content.RootDirectory + @"\Conversations\");
+
+            Conversation.BoxPosition = new Vector2(1280 - 600, 720 - 150);
+
+            // Load Avatars
+            DirectoryInfo directoryInfo = new DirectoryInfo(Content.RootDirectory + @"\Avatars\");
+            FileInfo[] fileInfo = directoryInfo.GetFiles();
+            ArrayList arrayList = new ArrayList();
+
+            foreach (FileInfo fi in fileInfo)
+                arrayList.Add(fi.FullName);
+
+            for (int i = 0; i < arrayList.Count; i++)
+            {
+                Conversation.Avatars.Add(Content.Load<Texture2D>(@"Avatars\" + i));
+            }
+
 
             gamepad = GamePad.GetState(PlayerIndex.One);
 
@@ -296,7 +324,13 @@ namespace GoodRPG
                 this.Exit();
             }
 
-
+            if (keyBoard.IsKeyDown(Keys.Q))
+            {
+                Conversation.StartConversation(1);
+                ConversationStarted = true;
+                gameState = GameStates.EncounterScreen;
+            }
+            
 
             switch (gameState)
             {
@@ -363,6 +397,8 @@ namespace GoodRPG
                             if (encounterInt <= 4)
                             {
                                 encounterSuccess = true;
+                               
+                                
                             }
                             else
                             {
@@ -376,6 +412,8 @@ namespace GoodRPG
                         if (encounterFinished == true)
                         {
                             gameState = GameStates.EncounterScreen;
+                            Conversation.StartConversation(1);
+                            ConversationStarted = true;
                         }
                     }
 
@@ -390,16 +428,16 @@ namespace GoodRPG
                         gameState = GameStates.GameScreen;
                     }
 
-                    
+                    if (ConversationStarted)
+                        Conversation.Update(gameTime);
 
                     break;
 
 
 
             }
-        
-        
-    
+
+           
                 // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -447,7 +485,12 @@ namespace GoodRPG
             {
                 player.Draw(spriteBatch, 0f);
             }
+            spriteBatch.End();
 
+            spriteBatch.Begin();
+
+            if (ConversationStarted)
+            Conversation.Draw(spriteBatch);
             spriteBatch.End();
 
             // TODO: Add your drawing code here
