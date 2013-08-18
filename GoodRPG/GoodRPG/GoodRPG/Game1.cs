@@ -86,7 +86,7 @@ namespace GoodRPG
             {                                                                                                                                                                                                /*introduce enemies here*/                                   
                  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
                  {1,3,3,3,3,3,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,1,},
-                 {1,3,3,3,3,3,2,0,0,0,0,0,2,3,3,3,3,3,3,3,3,3,3,3,3,3,1,},
+                 {1,3,3,3,3,3,2,4,0,0,0,0,2,3,3,3,3,3,3,3,3,3,3,3,3,3,1,},
                  {1,3,3,3,3,3,2,0,0,0,0,0,2,3,3,3,3,3,3,3,3,3,3,3,3,3,1,},
                  {1,3,3,3,3,3,2,0,2,2,2,0,2,3,3,3,3,3,3,3,3,3,3,3,3,3,1,},
                  {1,3,3,3,3,3,2,0,0,2,0,0,2,3,3,3,3,3,3,3,3,3,3,3,3,3,1,},
@@ -379,7 +379,7 @@ namespace GoodRPG
                         {
                             if (tile.BoundingBox.Contains(player.hitbox))
                             {
-                                player.Position.Y = 290;
+                                player.Position.Y -= 48;
                             }
                         }                        
                     }
@@ -392,7 +392,7 @@ namespace GoodRPG
                         {
                             encounterInt = encounterSuccessRoll.Next(0, 10000);
 
-                            if (encounterInt <= 4)
+                            if (encounterInt <= 22)
                             {
                                 encounterSuccess = true;
                                

@@ -127,9 +127,9 @@ namespace DialogueEngine
             //SaveConversation(2); // the number is the file name.
 
             CreateBox(ConversationSpeakers[currentSpeakerIndex].Message, 
-                new Rectangle(100, 200, 600, 150),
-                new Rectangle(250, 215, 445, 115),
-                new Rectangle(120, 215, 115, 115),
+                new Rectangle(50, 500, 600, 150),
+                new Rectangle(200, 515, 445, 115),
+                new Rectangle(70, 515, 115, 115),
                 backgroundImage);
         }
         
@@ -298,7 +298,10 @@ namespace DialogueEngine
                 {
                     
                     LoadConversation(ConversationSpeakers[currentSpeakerIndex].Choices.ElementAt(currentChoiceSelection).Value);
+                                        
                 }
+
+                
             }
         }
 
