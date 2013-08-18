@@ -282,12 +282,12 @@ namespace DialogueEngine
             // A choice
             else
             {
-                if (currentChoiceSelection < ConversationSpeakers[currentSpeakerIndex].Choices.Count - 1 && keyboardState.IsKeyDown(Keys.Down))
+                if (currentChoiceSelection < ConversationSpeakers[currentSpeakerIndex].Choices.Count - 1 && keyboardState.IsKeyDown(Keys.S))
                 {
                     currentChoiceSelection++;
                     choiceTimer = 0.0f;
                 }
-                if (currentChoiceSelection > 0 && keyboardState.IsKeyDown(Keys.Up))
+                if (currentChoiceSelection > 0 && keyboardState.IsKeyDown(Keys.W))
                 {
                     currentChoiceSelection--;
                     choiceTimer = 0.0f;
