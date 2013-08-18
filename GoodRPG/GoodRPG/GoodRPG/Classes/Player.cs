@@ -108,16 +108,6 @@ namespace GoodRPG
                     Position.Y -= spriteSpeed;
             }
 
-            else if (keyboard.IsKeyDown(Keys.A))
-            {
-                playerDirection = 2;
-                AnimateLeft(gameTime);
-                moving = true;
-                if (Position.X > 0)
-                    Position.X -= spriteSpeed;
-            }
-
-
             else if (keyboard.IsKeyDown(Keys.S))
             {
                 playerDirection = 3;
@@ -127,6 +117,14 @@ namespace GoodRPG
                     Position.Y += spriteSpeed;
             }
 
+            else if (keyboard.IsKeyDown(Keys.A))
+            {
+                playerDirection = 2;
+                AnimateLeft(gameTime);
+                moving = true;
+                if (Position.X > 0)
+                    Position.X -= spriteSpeed;
+            }
 
             else if (keyboard.IsKeyDown(Keys.D))
             {
